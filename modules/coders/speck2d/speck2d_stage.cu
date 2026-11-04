@@ -14,7 +14,7 @@
 #include "mem/mempool.h"
 #include "cuda_check.h"
 #include "stage/stage_registry.h"
-#include <cub/cub.cuh>
+#include "backend/cub.h"
 #include <algorithm>
 #include <stdexcept>
 #include <string>

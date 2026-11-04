@@ -393,6 +393,7 @@ add_library(fzgmod_modules
   modules/fused/fused_block/fused_block.cu
   modules/fused/fused_block/nvrtc_warp_fusion.cu
   modules/fused/chunk_fusion/chunk_fusion.cu
+  modules/fused/chunk_fusion/pfpl_stream.cu
   modules/fused/chunk_fusion/nvrtc_chunk_fusion.cpp
   modules/fused/common/nvrtc_jit.cpp
   modules/predictors/diff/diff.cu
@@ -494,6 +495,18 @@ if(FZGMOD_BACKEND STREQUAL "HIP")
   set_source_files_properties(
     modules/coders/ans/ans_stage.cu
     modules/coders/ans/dietgpu/GpuANS.cu
+    TARGET_DIRECTORY fzgmod_modules
+    PROPERTIES HEADER_FILE_ONLY TRUE
+  )
+  # Pipeline specialization JIT-compiles its fused kernels with NVRTC and launches them through the CUDA
+  # driver API, and its harness assumes 32-lane warps: none of it is built on HIP, where the registry offers
+  # no fused implementation (src/pipeline/fusion_registry.cpp) and every stage runs staged.
+  set_source_files_properties(
+    modules/fused/fused_block/fused_block.cu
+    modules/fused/fused_block/nvrtc_warp_fusion.cu
+    modules/fused/chunk_fusion/chunk_fusion.cu
+    modules/fused/chunk_fusion/nvrtc_chunk_fusion.cpp
+    modules/fused/common/nvrtc_jit.cpp
     TARGET_DIRECTORY fzgmod_modules
     PROPERTIES HEADER_FILE_ONLY TRUE
   )

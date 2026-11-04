@@ -13,7 +13,7 @@
 #include "outlier_correct_kernels.cuh"
 #include "mem/mempool.h"
 #include "cuda_check.h"
-#include <cub/cub.cuh>
+#include "backend/cub.h"
 #include <algorithm>
 #include <memory>
 #include <stdexcept>

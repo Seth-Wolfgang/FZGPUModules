@@ -56,7 +56,7 @@
  * the multi-launch `k_onset`/`k_vis` kernels below, just fused into one launch.
  */
 
-#include <cuda_runtime.h>
+#include "backend/api.h"
 #include <cstdint>
 #include <vector>
 #include <algorithm>
