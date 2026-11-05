@@ -228,6 +228,7 @@ target_link_libraries(fzgmod_modules
     fzgmod_compile_settings
     ${FZGMOD_GPU_RUNTIME}
   PRIVATE
+    fzgmod_mem
     fzgmod_utils
 )
 add_subdirectory(modules)

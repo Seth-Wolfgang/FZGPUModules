@@ -12,6 +12,9 @@ Version numbers follow [Semantic Versioning](https://semver.org/).
 ### Changed
 - CMake now locates the build-time Python interpreter with `find_package(Python3 3.7 REQUIRED COMPONENTS Interpreter)` and runs the header generators through `${Python3_EXECUTABLE}`, so a missing or too-old Python fails at configure time instead of mid-build. Override with `-DPython3_EXECUTABLE=...`.
 
+### Fixed
+- `fzgmod_modules` now links `fzgmod_mem`, which it calls into, so a consumer of the shared library links on toolchains that default to `--as-needed` (such as Ubuntu's GCC).
+
 ## [2.0.1] — 2026-10-15
 
 ### Added
